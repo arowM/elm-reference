@@ -15,7 +15,7 @@ import Reference exposing (..)
 {-| Map and unwrap to list.
 This is especially useful for updating list on View of THE.
 
-See more about README.md.
+See more about [README](http://package.elm-lang.org/packages/arowM/elm-reference/latest)
 
 -}
 unwrap : (Reference a x -> b) -> Reference (List a) x -> List b
