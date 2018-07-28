@@ -1,9 +1,12 @@
 sudo: false # force container-based infrastructure
 language: node_js
 node_js:
-  - "4.4"
+  - "node"
 install:
-  - npm install -g elm@0.18
   - npm install
 script:
   - npm test
+cache:
+  directories:
+    - "node_modules"
+    - "elm-stuff"
