@@ -37,6 +37,7 @@ module Reference
 
 {-| Representing a `this` object and `root` object.
 
+    ref : Reference Int (List Int)
     ref = fromRecord
         { this = 3
         , rootWith = \x -> [1,2] ++ x :: [4,5]
@@ -48,7 +49,8 @@ module Reference
     root ref
     --> [ 1, 2, 3, 4, 5 ]
 
-    ref2 = modify (\n -> n + 1)
+    ref2 : Reference Int (List Int)
+    ref2 = modify (\n -> n + 1) ref
 
     this ref2
     --> 4
@@ -76,11 +78,12 @@ fromRecord =
 
 
 {-| Get focused object from `Reference` value.
-ref : Reference Int (List Int)
-ref = fromRecord
-{ this = 2
-, rootWith = \x -> [1] ++ [x] ++ [3]
-}
+
+    ref : Reference Int (List Int)
+    ref = fromRecord
+        { this = 2
+        , rootWith = \x -> [1] ++ [x] ++ [3]
+        }
 
     this ref
     --> 2
@@ -106,11 +109,12 @@ rootWith (Reference { rootWith }) =
 
 
 {-| Pick out root object from `Reference` value.
-ref : Reference Int (List Int)
-ref = fromRecord
-{ this = 2
-, rootWith = \x -> [1] ++ [x] ++ [3]
-}
+
+    ref : Reference Int (List Int)
+    ref = fromRecord
+        { this = 2
+        , rootWith = \x -> [1] ++ [x] ++ [3]
+        }
 
     root ref
     --> [1, 2, 3]
@@ -129,6 +133,7 @@ root ref =
         , rootWith = \x -> [1] ++ [x] ++ [3]
         }
 
+    modifiedRef : Reference Int (List Int)
     modifiedRef = modify (\n -> n * 10) ref
 
     this modifiedRef
@@ -159,6 +164,7 @@ modify f ref =
     rootWith ls =
         [[2, 3]] ++ [ls] ++ [[6, 7]]
 
+    newRef : Reference Int (List (List Int))
     newRef = map rootWith ref
 
     this newRef
@@ -167,6 +173,7 @@ modify f ref =
     root newRef
     --> [[2,3], [4,5], [6,7]]
 
+    modifiedRef : Reference Int (List (List Int))
     modifiedRef = modify (\_ -> 8) newRef
 
     this modifiedRef
@@ -185,7 +192,9 @@ map f ref =
 
 
 {-| A constructor for `Reference` to create top root object.
-ref = top (Just 3)
+
+    ref : Reference (Maybe Int) (Maybe Int)
+    ref = top (Just 3)
 
     this ref
     --> Just 3
