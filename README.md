@@ -99,6 +99,10 @@ The basic motivation of `Reference` library is to empower the references of muta
 The following code is the same application using `Reference`s instead of index numbers.
 
 ```elm
+type Msg
+    = ClickNumber (Reference Int (List Int))
+
+
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
@@ -109,10 +113,6 @@ update msg model =
               }
             , Cmd.none
             )
-
-
-
--- VIEW
 
 
 view : Model -> Html Msg
