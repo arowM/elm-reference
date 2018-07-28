@@ -35,7 +35,8 @@ module Reference
 -}
 
 
-{-| Representing a `this` object and `root` object.
+{-| A core data type to realize references of mutable programing languages in Elm.
+After modifying target value by `modify` function, `root` value is also updated as an example bellow.
 
     ref : Reference Int (List Int)
     ref = fromRecord
@@ -151,7 +152,7 @@ modify f ref =
         }
 
 
-{-| Compose two `Reference`s to one.
+{-| Change root object type by providing convert function.
 
     ref : Reference Int (List Int)
     ref = fromRecord
@@ -166,6 +167,12 @@ modify f ref =
 
     newRef : Reference Int (List (List Int))
     newRef = map rootWith ref
+
+    this ref
+    --> 4
+
+    root ref
+    --> [4, 5]
 
     this newRef
     --> 4
