@@ -1,0 +1,17 @@
+{
+    "version": "1.0.0",
+    "summary": "A library to handle immutable data structure flexibly as mutable languages.",
+    "repository": "https://github.com/arowM/elm-reference.git",
+    "license": "MIT",
+    "source-directories": [
+        "src"
+    ],
+    "exposed-modules": [
+        "Reference",
+        "Reference.List"
+    ],
+    "dependencies": {
+        "elm-lang/core": "5.1.1 <= v < 6.0.0"
+    },
+    "elm-version": "0.18.0 <= v < 0.19.0"
+}

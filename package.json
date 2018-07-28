@@ -1,0 +1,28 @@
+{
+  "name": "elm-reference",
+  "description": "A library to handle immutable data structure flexibly as mutable languages.",
+  "main": "index.js",
+  "scripts": {
+    "elm-analyse": "elm-analyse",
+    "elm-format": "elm-format",
+    "elm-make": "elm-make",
+    "elm-package": "elm-package",
+    "elm-reactor": "elm-reactor",
+    "elm-repl": "elm-repl",
+    "elm-test": "elm-test",
+    "elm-verify-examples": "elm-verify-examples",
+    "text": "elm-verify-examples && elm-test",
+    "start": "elm-reactor"
+  },
+  "author": "Kadzuya Okamoto",
+  "license": "MIT",
+  "dependencies": {
+    "elm": "^0.18.0"
+  },
+  "devDependencies": {
+    "elm-analyse": "^0.14.2",
+    "elm-format": "^0.6.1-alpha",
+    "elm-test": "^0.18.12",
+    "elm-verify-examples": "^2.3.1"
+  }
+}
