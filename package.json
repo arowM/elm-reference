@@ -11,8 +11,9 @@
     "elm-repl": "elm-repl",
     "elm-test": "elm-test",
     "elm-verify-examples": "elm-verify-examples",
-    "text": "elm-verify-examples && elm-test",
-    "start": "elm-reactor"
+    "analyse": "elm-analyse && cd tests && elm-analyse",
+    "format": "elm-format src tests",
+    "test": "elm-verify-examples && elm-test"
   },
   "author": "Kadzuya Okamoto",
   "license": "MIT",
