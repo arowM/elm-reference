@@ -1,0 +1,24 @@
+{
+  "name": "elm-reference-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "elm-analyse": "elm-analyse",
+    "elm-format": "elm-format",
+    "elm-make": "elm-make",
+    "elm-package": "elm-package",
+    "elm-reactor": "elm-reactor",
+    "elm-repl": "elm-repl",
+    "analyse": "elm-analyse",
+    "format": "elm-format src",
+    "start": "elm-reactor"
+  },
+  "author": "Kadzuya Okamoto",
+  "license": "MIT",
+  "dependencies": {
+    "elm": "^0.18.0",
+    "elm-analyse": "^0.14.2",
+    "elm-format": "^0.6.1-alpha"
+  }
+}
