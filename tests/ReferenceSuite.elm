@@ -1,6 +1,7 @@
 module ReferenceSuite exposing (suite)
 
 import Expect
+import Fuzz exposing (string)
 import Test exposing (..)
 import Reference exposing (..)
 import ReferenceSuite.Util exposing (reference)

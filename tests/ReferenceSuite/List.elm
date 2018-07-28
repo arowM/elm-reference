@@ -24,7 +24,7 @@ suite =
             ]
         , describe "`unwrap root ref`"
             [ fuzz listReference "is equals to `List.map (\\_ -> root ref) <| this ref`" <|
-                unwrap root ref
+                \ref -> unwrap root ref
                     |> Expect.equal (List.map (\_ -> root ref) <| this ref)
             ]
         ]
