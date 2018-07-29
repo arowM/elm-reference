@@ -4,7 +4,8 @@
 
 An Elm library to handle immutable data structure flexibly as mutable languages.
 
-[![elm-reference](https://user-images.githubusercontent.com/1481749/43362612-bf6c7666-9329-11e8-8542-2831fbfe4cab.png)](https://twitter.com/hashtag/%E3%81%95%E3%81%8F%E3%82%89%E3%81%A1%E3%82%83%E3%82%93%E6%97%A5%E8%A8%98?src=hash)
+[![elm-reference-small](https://user-images.githubusercontent.com/1481749/43362741-ad7a4868-932c-11e8-94a6-850c904b814e.png)
+](https://twitter.com/hashtag/%E3%81%95%E3%81%8F%E3%82%89%E3%81%A1%E3%82%83%E3%82%93%E6%97%A5%E8%A8%98?src=hash)
 
 Any PRs are welcome, even for documentation fixes.  (The main author of this library is not an English native.)
 
