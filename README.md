@@ -4,6 +4,8 @@
 
 An Elm library to handle immutable data structure flexibly as mutable languages.
 
+[![elm-reference](https://user-images.githubusercontent.com/1481749/43362612-bf6c7666-9329-11e8-8542-2831fbfe4cab.png)](https://twitter.com/hashtag/%E3%81%95%E3%81%8F%E3%82%89%E3%81%A1%E3%82%83%E3%82%93%E6%97%A5%E8%A8%98?src=hash)
+
 Any PRs are welcome, even for documentation fixes.  (The main author of this library is not an English native.)
 
 ## What problem can `Reference` resolve?
@@ -93,6 +95,66 @@ type Msg
 ```
 
 The basic motivation of `Reference` library is to empower the references of mutable languages to the Elm.
+
+## Concept of the `Reference`
+
+`Reference` has concept of `this` and `root`.
+
+* `this` means focused value (`x = arr[1]` in the previous JS example)
+* `root` means root value (`arr` in the previous JS example)
+
+The core data type of `Reference` is `Reference this root`, which can be created by prividing `this` value and function to specify how `root` depends on the `this` value.
+
+```elm
+fromRecord : { this : a, rootWith : a -> root } -> Reference a root
+```
+
+To pick out `this` value and `root` value from `Reference`, use following functions.
+
+```elm
+this : Reference this root -> this
+root : Reference this root -> root
+```
+
+Now we can create `Reference` and then pick out `this` and `value`.
+
+```elm
+ref : Reference Int (List Int)
+ref = fromRecord
+    { this = 3
+    , rootWith = \x -> [1,2] ++ x :: [4,5]
+    }
+
+this ref
+--> 3
+
+root ref
+--> [ 1, 2, 3, 4, 5 ]
+```
+
+Next, let's modify the `ref` value declared in the above example.
+We can use `modify` for the purpose.
+
+```elm
+modify : (a -> a) -> Reference a root -> Reference a root
+```
+
+As you can see in the bellow example, `modify` also updates `root` value.
+
+```elm
+ref2 : Reference Int (List Int)
+ref2 = modify (\n -> n + 1) ref
+
+this ref
+--> 3
+this ref2
+--> 4
+
+root ref
+--> [ 1, 2, 3, 4, 5 ]
+root ref2
+--> [ 1, 2, 4, 4, 5 ]
+```
 
 ## Example code using `Reference`
 
