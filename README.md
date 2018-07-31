@@ -11,6 +11,15 @@ Any PRs are welcome, even for documentation fixes.  (The main author of this lib
 
 ![example](https://user-images.githubusercontent.com/1481749/43438888-6a75b5e8-94cb-11e8-873d-06778ead6051.gif)
 
+## Top of Contents
+
+* [What problem can `Reference` resolve?](#what-problem-can-reference-resolve)
+* [Reference of mutable programing languages help us!](#reference-of-mutable-programing-languages-help-us)
+* [Concept of the `Reference`](#concept-of-the-reference)
+* [Example code using `Reference`](#example-code-using-reference)
+* [More examples](#more-examples)
+* [Related works](#related-works)
+
 ## What problem can `Reference` resolve?
 
 It is often case to render list of sub views, such as TODO lists, registered user lists, list of posts, etc...
@@ -210,3 +219,53 @@ type Node
 ```
 
 Example codes including such cases are available in the `example` directory.
+
+## Related works
+
+### Lens
+
+[Monocle-Lens](http://package.elm-lang.org/packages/arturopala/elm-monocle/1.7.0/Monocle-Lens) is one of the similar concept to `Reference`.
+
+There are three reasons why I developed this library.
+
+First, this is not completely the same structure with Lens. `Reference this root` can be rewritten by following definition.
+
+```elm
+type alias Reference this root = ( this, Lens this root )
+```
+
+The main target usage of this library is updating list value when some events are fired on sub view as example app described previously.
+So, it is important to hold current value (i.e., `this`) itself in the data type.
+
+Second, it is recommended to target a concrete use case as [Designing APIs](https://github.com/elm-lang/elm-package#designing-apis) of elm-package says.
+It means `elm-reference` should be published as an independent library to handle concrete use case described above.
+
+Third, the `Reference.List.unwrap` function is so powerfull for such a usage but not so easy for end users to implement by themselves.
+It is worth publishing `elm-reference` just to provide `Reference.List.unwrap`.
+
+### Zipper
+
+There is an approach called `Zipper` to handle tree-like structures.
+
+For example, following implementations exist.
+
+* `zwilias/elm-rosetree/Tree-Zipper` simple but fast
+* `tomjkidd/elm-multiway-tree-zipper` sturdy but faster
+* `turboMaCk/lazy-tree-with-zipper` - [Experimental] lazy but very fast
+
+The relation between `Zipper` and `Reference` is:
+
+* `this` is equivalent to a `label`
+* `root` is equivalent to the `zipped tree`
+* `ref` is equivalent to a tree zipper
+
+But `Zipper` is not exactly for the purpose of updating an element by View events.
+I guess it's not so easy question "How to resolve Vue tree view example in Elm using Zipper?".
+In that point of view, `Reference` is more suitable to handle such problems.
+(Of course, it is recommended to use `Zipper` if an application requires tree navigation feature.)
+
+From another point of view, `Reference` is one of the abstruction of tree Zipper.
+The `Zipper` is specialized version of `Reference` (`type alias Zipper a = Reference a (Tree a)`).
+It means `Reference` can handle any structures in addition to `Tree`.
+One example that `Zipper` cannot handle is strange Tree structure such as `type BiTree = Node (List BiTree) (List BiTree)`.
+Another example that `Zipper` could not handle easily is [UpDown example](https://github.com/arowM/elm-reference/blob/master/example/src/UpDown.elm) in the `example` directory.
