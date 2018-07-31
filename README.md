@@ -115,7 +115,7 @@ The basic motivation of `Reference` library is to empower the references of muta
 * `this` means focused value (`x = arr[1]` in the previous JS example)
 * `root` means root value (`arr` in the previous JS example)
 
-The core data type of `Reference` is `Reference this root`, which can be created by prividing `this` value and function to specify how `root` depends on the `this` value.
+The core data type of `Reference` is `Reference this root`, which can be created by providing `this` value and function to specify how `root` depends on the `this` value.
 
 ```elm
 fromRecord : { this : a, rootWith : a -> root } -> Reference a root
@@ -240,7 +240,7 @@ So, it is important to hold current value (i.e., `this`) itself in the data type
 Second, it is recommended to target a concrete use case as [Designing APIs](https://github.com/elm-lang/elm-package#designing-apis) of elm-package says.
 It means `elm-reference` should be published as an independent library to handle concrete use case described above.
 
-Third, the `Reference.List.unwrap` function is so powerfull for such a usage but not so easy for end users to implement by themselves.
+Third, the `Reference.List.unwrap` function is so powerful for such a usage but not so easy for end users to implement by themselves.
 It is worth publishing `elm-reference` just to provide `Reference.List.unwrap`.
 
 ### Zipper
@@ -264,7 +264,7 @@ I guess it's not so easy question "How to resolve Vue tree view example in Elm u
 In that point of view, `Reference` is more suitable to handle such problems.
 (Of course, it is recommended to use `Zipper` if an application requires tree navigation feature.)
 
-From another point of view, `Reference` is one of the abstruction of tree Zipper.
+From another point of view, `Reference` is one of the abstraction of tree Zipper.
 The `Zipper` is specialized version of `Reference` (`type alias Zipper a = Reference a (Tree a)`).
 It means `Reference` can handle any structures in addition to `Tree`.
 One example that `Zipper` cannot handle is strange Tree structure such as `type BiTree = Node (List BiTree) (List BiTree)`.
