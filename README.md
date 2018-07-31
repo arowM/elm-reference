@@ -9,6 +9,8 @@ An Elm library to handle immutable data structure flexibly as mutable languages.
 
 Any PRs are welcome, even for documentation fixes.  (The main author of this library is not an English native.)
 
+![example](https://user-images.githubusercontent.com/1481749/43438888-6a75b5e8-94cb-11e8-873d-06778ead6051.gif)
+
 ## What problem can `Reference` resolve?
 
 It is often case to render list of sub views, such as TODO lists, registered user lists, list of posts, etc...
