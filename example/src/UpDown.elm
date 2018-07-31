@@ -50,12 +50,13 @@ type alias Model =
 
 
 type Msg
-    = UpdateTodo (Reference ( UpDown, String ) (List String))
+    = UpdateTodo (Reference ( Operation, String ) (List String))
 
 
-type UpDown
+type Operation
     = Up
     | Down
+    | Remove
     | Retain
 
 
@@ -82,7 +83,7 @@ view model =
             Reference.List.unwrap renderRow <|
                 Reference.fromRecord
                     { this = List.map ((,) Retain) model.todos
-                    , rootWith = flattenUpDown
+                    , rootWith = flattenOperation
                     }
         , div []
             [ text "Results:"
@@ -92,7 +93,7 @@ view model =
         ]
 
 
-renderRow : Reference ( UpDown, String ) (List String) -> Html Msg
+renderRow : Reference ( Operation, String ) (List String) -> Html Msg
 renderRow ref =
     div
         []
@@ -102,6 +103,12 @@ renderRow ref =
             , Attributes.value <| Tuple.second <| Reference.this ref
             ]
             []
+        , Html.button
+            [ Attributes.type_ "button"
+            , Events.onClick (UpdateTodo <| Reference.modify (Tuple.mapFirst (\_ -> Remove)) ref)
+            ]
+            [ text "×"
+            ]
         , Html.button
             [ Attributes.type_ "button"
             , Events.onClick (UpdateTodo <| Reference.modify (Tuple.mapFirst (\_ -> Up)) ref)
@@ -130,15 +137,15 @@ subscriptions _ =
 -- Helper functions
 
 
-{-| Reordering by `UpDown` notation and flatten to the bare list.
+{-| Reordering by `Operation` notation and flatten to the bare list.
 -}
-flattenUpDown : List ( UpDown, a ) -> List a
-flattenUpDown =
+flattenOperation : List ( Operation, a ) -> List a
+flattenOperation =
     -- It is guaranteed only one Up/Down in the list at most.
-    List.map Tuple.second << reorderUp << reorderDown
+    List.map Tuple.second << reorderUp << reorderDown << filterRemove
 
 
-reorderUp : List ( UpDown, a ) -> List ( UpDown, a )
+reorderUp : List ( Operation, a ) -> List ( Operation, a )
 reorderUp =
     List.foldr
         (\a ( mb, ls ) ->
@@ -162,7 +169,7 @@ reorderUp =
                     ls
 
 
-reorderDown : List ( UpDown, a ) -> List ( UpDown, a )
+reorderDown : List ( Operation, a ) -> List ( Operation, a )
 reorderDown =
     List.foldl
         (\a ( mb, dls ) ->
@@ -184,3 +191,16 @@ reorderDown =
 
                 Nothing ->
                     dls []
+
+
+filterRemove : List ( Operation, a ) -> List ( Operation, a )
+filterRemove =
+    List.filter
+        (\a ->
+            case a of
+                ( Remove, _ ) ->
+                    False
+
+                _ ->
+                    True
+        )
