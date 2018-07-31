@@ -1,5 +1,5 @@
 {
-    "version": "1.0.2",
+    "version": "1.0.3",
     "summary": "An immutable approach imitating references of mutable languages.",
     "repository": "https://github.com/arowM/elm-reference.git",
     "license": "MIT",
