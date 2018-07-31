@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/arowM/elm-reference.svg?branch=master)](https://travis-ci.org/arowM/elm-reference)
 
-An Elm library to handle immutable data structure flexibly as mutable languages.
+An immutable approach imitating references of mutable languages.
 
 [![elm-reference-small](https://user-images.githubusercontent.com/1481749/43362741-ad7a4868-932c-11e8-94a6-850c904b814e.png)
 ](https://twitter.com/hashtag/%E3%81%95%E3%81%8F%E3%82%89%E3%81%A1%E3%82%83%E3%82%93%E6%97%A5%E8%A8%98?src=hash)

@@ -1,6 +1,6 @@
 {
   "name": "elm-reference",
-  "description": "A library to handle immutable data structure flexibly as mutable languages.",
+  "description": "An immutable approach imitating references of mutable languages.",
   "main": "index.js",
   "scripts": {
     "elm-analyse": "elm-analyse",
