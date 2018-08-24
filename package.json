@@ -7,7 +7,6 @@
     "elm-format": "elm-format",
     "elm": "elm",
     "elm-test": "elm-test",
-    "elm-upgrade": "elm-upgrade",
     "elm-verify-examples": "elm-verify-examples",
     "analyse": "elm-analyse && cd tests && elm-analyse",
     "format": "elm-format src tests",

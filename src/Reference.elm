@@ -1,14 +1,13 @@
-module Reference
-    exposing
-        ( Reference
-        , this
-        , rootWith
-        , fromRecord
-        , modify
-        , root
-        , map
-        , top
-        )
+module Reference exposing
+    ( Reference
+    , this
+    , root
+    , rootWith
+    , fromRecord
+    , top
+    , modify
+    , map
+    )
 
 {-| `Reference` is a concept to handle immutable data structure flexibly as using "reference" in mutable languages.
 
@@ -91,8 +90,8 @@ fromRecord =
 
 -}
 this : Reference a root -> a
-this (Reference { this }) =
-    this
+this (Reference o) =
+    o.this
 
 
 {-| Pick out root object from `Reference` value by specifying `this` value.
@@ -101,8 +100,8 @@ this (Reference { this }) =
 
 -}
 rootWith : Reference a root -> a -> root
-rootWith (Reference { rootWith }) =
-    rootWith
+rootWith (Reference o) =
+    o.rootWith
 
 
 

@@ -1,7 +1,4 @@
-module Reference.List
-    exposing
-        ( unwrap
-        )
+module Reference.List exposing (unwrap)
 
 {-| `List` specific functions for `Reference`.
 
