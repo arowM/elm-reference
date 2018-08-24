@@ -5,11 +5,9 @@
   "scripts": {
     "elm-analyse": "elm-analyse",
     "elm-format": "elm-format",
-    "elm-make": "elm-make",
-    "elm-package": "elm-package",
-    "elm-reactor": "elm-reactor",
-    "elm-repl": "elm-repl",
+    "elm": "elm",
     "elm-test": "elm-test",
+    "elm-upgrade": "elm-upgrade",
     "elm-verify-examples": "elm-verify-examples",
     "analyse": "elm-analyse && cd tests && elm-analyse",
     "format": "elm-format src tests",
@@ -18,12 +16,13 @@
   "author": "Kadzuya Okamoto",
   "license": "MIT",
   "dependencies": {
-    "elm": "^0.18.0"
+    "elm": "^0.19.0-bugfix2",
+    "elm-upgrade": "^0.19.1"
   },
   "devDependencies": {
-    "elm-analyse": "^0.14.2",
-    "elm-format": "^0.6.1-alpha",
+    "elm-analyse": "^0.15.0",
+    "elm-format": "^0.8.0",
     "elm-test": "^0.18.12",
-    "elm-verify-examples": "^2.3.1"
+    "elm-verify-examples": "^3.0.0"
   }
 }
