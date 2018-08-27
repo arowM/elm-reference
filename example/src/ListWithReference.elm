@@ -1,18 +1,20 @@
 module ListWithReference exposing (main)
 
+import Browser
 import Html exposing (Html, div, text)
 import Html.Events as Events
 import Reference exposing (Reference)
 import Reference.List
 
 
+
 -- APP
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    Html.program
-        { init = init
+    Browser.element
+        { init = \_ -> init
         , view = view
         , update = update
         , subscriptions = subscriptions
@@ -70,7 +72,7 @@ renderRow ref =
     div
         [ Events.onClick (ClickNumber ref)
         ]
-        [ text <| toString <| Reference.this ref
+        [ text <| String.fromInt <| Reference.this ref
         ]
 
 

@@ -1,5 +1,6 @@
 module Tree exposing (main)
 
+import Browser
 import Html exposing (Attribute, Html, div, text)
 import Html.Attributes as Attributes
 import Html.Events as Events
@@ -7,13 +8,14 @@ import Reference exposing (Reference)
 import Reference.List
 
 
+
 -- APP
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    Html.program
-        { init = init
+    Browser.element
+        { init = \_ -> init
         , view = view
         , update = update
         , subscriptions = subscriptions
@@ -91,7 +93,7 @@ renderNode ref =
                 [ div
                     [ Events.onClick (ClickNode ref)
                     ]
-                    [ text <| toString n
+                    [ text <| String.fromInt n
                     ]
                 , div [ paddingLeft ] <|
                     Reference.List.unwrap renderNode <|
@@ -104,11 +106,7 @@ renderNode ref =
 
 paddingLeft : Attribute Msg
 paddingLeft =
-    Attributes.style
-        [ ( "padding-left"
-          , "1em"
-          )
-        ]
+    Attributes.style "padding-left" "1em"
 
 
 

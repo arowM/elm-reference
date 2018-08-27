@@ -1,5 +1,6 @@
 module UpDown exposing (main)
 
+import Browser
 import Html exposing (Html, div, text)
 import Html.Attributes as Attributes
 import Html.Events as Events
@@ -7,13 +8,14 @@ import Reference exposing (Reference)
 import Reference.List
 
 
+
 -- APP
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    Html.program
-        { init = init
+    Browser.element
+        { init = \_ -> init
         , view = view
         , update = update
         , subscriptions = subscriptions
@@ -82,12 +84,12 @@ view model =
         [ div [] <|
             Reference.List.unwrap renderRow <|
                 Reference.fromRecord
-                    { this = List.map ((,) Retain) model.todos
+                    { this = List.map (\b -> ( Retain, b )) model.todos
                     , rootWith = flattenOperation
                     }
         , div []
             [ text "Results:"
-            , div [ Attributes.style [ ( "padding-left", "1em" ) ] ] <|
+            , div [ Attributes.style "padding-left" "1em" ] <|
                 List.map (\str -> div [] [ text str ]) model.todos
             ]
         ]
@@ -160,13 +162,14 @@ reorderUp =
                     ( Nothing, a :: ls )
         )
         ( Nothing, [] )
-        >> \( ma, ls ) ->
-            case ma of
-                Just a ->
-                    a :: ls
+        >> (\( ma, ls ) ->
+                case ma of
+                    Just a ->
+                        a :: ls
 
-                Nothing ->
-                    ls
+                    Nothing ->
+                        ls
+           )
 
 
 reorderDown : List ( Operation, a ) -> List ( Operation, a )
@@ -175,22 +178,23 @@ reorderDown =
         (\a ( mb, dls ) ->
             case ( mb, a ) of
                 ( Just b, _ ) ->
-                    ( Nothing, dls << ((::) a) << ((::) b) )
+                    ( Nothing, dls << (::) a << (::) b )
 
                 ( Nothing, ( Down, _ ) ) ->
                     ( Just a, dls )
 
                 ( Nothing, _ ) ->
-                    ( Nothing, dls << ((::) a) )
+                    ( Nothing, dls << (::) a )
         )
         ( Nothing, identity )
-        >> \( ma, dls ) ->
-            case ma of
-                Just a ->
-                    (dls << ((::) a)) []
+        >> (\( ma, dls ) ->
+                case ma of
+                    Just a ->
+                        (dls << (::) a) []
 
-                Nothing ->
-                    dls []
+                    Nothing ->
+                        dls []
+           )
 
 
 filterRemove : List ( Operation, a ) -> List ( Operation, a )
