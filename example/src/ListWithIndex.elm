@@ -1,17 +1,19 @@
 module ListWithIndex exposing (main)
 
+import Browser
 import Html exposing (Html, div, text)
 import Html.Events as Events
 import List.Extra
 
 
+
 -- APP
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    Html.program
-        { init = init
+    Browser.element
+        { init = \_ -> init
         , view = view
         , update = update
         , subscriptions = subscriptions
@@ -69,7 +71,7 @@ renderRow idx n =
     div
         [ Events.onClick (ClickNumber idx)
         ]
-        [ text <| toString n
+        [ text <| String.fromInt n
         ]
 
 
