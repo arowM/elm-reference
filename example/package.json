@@ -4,15 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "elm-analyse": "elm-analyse",
-    "elm-format": "elm-format",
-    "elm-make": "elm-make",
-    "elm-package": "elm-package",
-    "elm-reactor": "elm-reactor",
-    "elm-repl": "elm-repl",
-    "analyse": "elm-analyse",
-    "format": "elm-format src",
-    "start": "elm-reactor"
+    "start": "elm reactor"
   },
   "author": "Kadzuya Okamoto",
   "license": "MIT",
