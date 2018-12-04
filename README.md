@@ -227,30 +227,29 @@ If you'd like to see what using `Reference` with this structure looks like, take
 
 [Monocle-Lens](http://package.elm-lang.org/packages/arturopala/elm-monocle/1.7.0/Monocle-Lens) is similar in concept to `Reference`. However, it's not quite the same. I developed this library for three reasons:
 
-First, `Reference` is at a slightly higher abstraction than Lens. If you used Lens to do what Reference does, you could
+First, `Reference` is at a slightly higher level of abstraction than Lens. If you used Lens to do what Reference does, you could
 write the type signature like this:
 
 ```elm
 type alias Reference this root = ( this, Lens this root )
 ```
 
-Since we want to update a specific value, we need to indicate what that value is. `Reference` makes this structure easier to work with.
-You could do it with Lens, but you'd write very similar code to what `Reference` already contains.
+Since we want to update a specific value, we need to indicate what that value is. `Reference` makes this structure easy to work with.
+You could do it with Lens, but you'd write code that `Reference` already contains.
 
 Second, as an extension of the first reason, the Elm community recommends [targeting concrete use cases](https://github.com/elm-lang/elm-package#designing-apis).
 This is a concrete use case, so it should be published as an independent library.
 
-Third, the `Reference.List.unwrap` function is very powerful, but its implementation is not very easy. It's might even be worth
+Third, the `Reference.List.unwrap` function is very powerful, but its implementation is not very easy. It might even be worth
 publishing `elm-reference` just to provide `Reference.List.unwrap`.
 
 ### Zipper
 
 There is another similar approach called Zippers.
 
-Here's a few implementations for Trees:
+Here are a few implementations for Trees:
 
-* `zwilias/elm-rosetree/Tree-Zipper` simple but fast
-* `tomjkidd/elm-multiway-tree-zipper` sturdy but faster
+* `zwilias/elm-rosetree/Tree-Zipper` simple and easy to use
 * `turboMaCk/lazy-tree-with-zipper` - [Experimental] lazy but very fast
 
 `Reference` and `Zipper` correspond pretty well:
@@ -261,13 +260,13 @@ Here's a few implementations for Trees:
 
 There are two main differences:
 
-First, Zippers (at least in Elm) are typically focused on viewing specific elements of a collection,
-while `Reference` is more focused on updating specific elements of a collection.
+First, Zippers (at least in Elm right now) are typically focused on viewing specific elements
+of a collection, while `Reference` is more focused on updating specific elements of a collection.
 Additionally, `Reference` is specifically designed for updating values using the Elm
-Architecture, while Zippers are generic structures designed for functional langauges in general.
+Architecture, while Zippers are generic structures designed for functional languages in general.
 
-Second, Zipper's are targeted to specific collection types. There are List Zippers, and Binary Tree
-Zippers and Rose Tree Zippers, and probably more. `Reference` gives up some of the more convenent
+Second, Zippers are targeted to specific collection types. There are List Zippers, and Binary Tree
+Zippers and Rose Tree Zippers, and probably more. `Reference` gives up some of the more convenient
 methods of those specific implementations (since it knows nothing about its collection), but gains
 the ability to work with very unusual and uncommon structures in exchange. Like this one: `type BiTree = Node (List BiTree) (List BiTree)`,
 or the UpDown structure in [this example](https://github.com/arowM/elm-reference/blob/master/example/src/UpDown.elm).
