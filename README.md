@@ -257,15 +257,17 @@ Here's a few implementations for Trees:
 
 * `this` is equivalent to a `label`
 * `root` is equivalent to the `zipped tree`
-* `ref` is equivalent to a tree zipper (A `Zipper (Tree a)`, though no libraries offer that syntax.)
+* `Reference` is equivalent to the zipper itself
 
 There are two main differences:
 
-First, Zippers are typically focused on viewing specific elements of a collection,
+First, Zippers (at least in Elm) are typically focused on viewing specific elements of a collection,
 while `Reference` is more focused on updating specific elements of a collection.
+Additionally, `Reference` is specifically designed for updating values using the Elm
+Architecture, while Zippers are generic structures designed for functional langauges in general.
 
-Second, Zipper's are targeted to specific collection types. There are list zippers, and binary tree
-zippers and rose tree zippers, and probably more. `Reference` gives up some of the more convenent
+Second, Zipper's are targeted to specific collection types. There are List Zippers, and Binary Tree
+Zippers and Rose Tree Zippers, and probably more. `Reference` gives up some of the more convenent
 methods of those specific implementations (since it knows nothing about its collection), but gains
-the ability to work with very unusual and uncommon structures in exchange. Like this one `type BiTree = Node (List BiTree) (List BiTree)`,
+the ability to work with very unusual and uncommon structures in exchange. Like this one: `type BiTree = Node (List BiTree) (List BiTree)`,
 or the UpDown structure in [this example](https://github.com/arowM/elm-reference/blob/master/example/src/UpDown.elm).
