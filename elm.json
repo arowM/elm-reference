@@ -3,7 +3,7 @@
     "name": "arowM/elm-reference",
     "summary": "An immutable approach imitating references of mutable languages.",
     "license": "MIT",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "exposed-modules": [
         "Reference",
         "Reference.List"
