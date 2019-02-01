@@ -220,6 +220,7 @@ type Node
 ```
 
 If you'd like to see what using `Reference` with this structure looks like, take a look in the `example` directory.
+Here is [another interesting example](https://github.com/uzimaru0000/elm-drag-demo) using `Reference` for drag and drop application ([demo](https://uzimaru0000.github.io/elm-drag-demo/)).
 
 ## Related works
 
